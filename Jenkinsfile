@@ -4,9 +4,9 @@ pipeline {
             label "slave"
         }
     }
-environment {
-    PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-}
+    environment {
+        PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+    }
     stages {
         stage("build") {
             steps {
@@ -14,3 +14,4 @@ environment {
             }
         }
     }
+}
