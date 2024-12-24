@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+        scannerHome = tool 'sonar-scanner'
     }
     stages {
         stage("build") {
@@ -24,9 +25,6 @@ pipeline {
             }
         }
         stage("Quality Gate") {
-            environment {
-              scannerHome = tool 'sonar-scanner'
-            }
             steps {
                 script {
                     timeout(time: 1, unit: 'HOURS') {
