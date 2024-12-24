@@ -12,7 +12,14 @@ pipeline {
             steps {
                 echo "----------- build started ----------"
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
-                echo "----------- build complted ----------"
+                echo "----------- build completed ----------"
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar-server') {
+                    echo 'SonarQube Analysis Completed'
+                }
             }
         }
     }
