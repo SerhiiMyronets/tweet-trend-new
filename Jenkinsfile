@@ -19,7 +19,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh "${scannerHome}/bin/sonar-scanner -x"
+                    sh "${scannerHome}/bin/sonar-scanner -X"
                     echo 'SonarQube Analysis Completed'
                 }
             }
