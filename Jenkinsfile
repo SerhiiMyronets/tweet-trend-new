@@ -26,7 +26,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.tests.skip=true"
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.tests.skip=true -X"
                     echo 'SonarQube Analysis Completed'
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
         stage("Quality Gate") {
             steps {
                 script {
-                    timeout(time: 1, unit: 'MINUTES') {
+                    timeout(time: 5, unit: 'MINUTES') {
                         def qg = waitForQualityGate()
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
