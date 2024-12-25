@@ -26,7 +26,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.tests.skip=true -X"
+                    sh "${scannerHome}/bin/sonar-scanner -X"
                     echo 'SonarQube Analysis Completed'
                 }
             }
