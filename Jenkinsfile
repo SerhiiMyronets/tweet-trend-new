@@ -4,6 +4,7 @@ pipeline {
 //             label "slave"
 //         }
 //     }
+    agent any
     environment {
         PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
         scannerHome = tool 'sonar-scanner'
