@@ -16,17 +16,17 @@ pipeline {
                 echo "----------- build completed ----------"
             }
         }
-//         stage("test") {
-//             steps{
-//                 echo "----------- unit test started ----------"
-//                 sh 'mvn surefire-report:report'
-//                 echo "----------- unit test Completed ----------"
-//             }
-//         }
+        stage("test") {
+            steps{
+                echo "----------- unit test started ----------"
+                sh 'mvn surefire-report:report'
+                echo "----------- unit test Completed ----------"
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.tests.skip=true"
                     echo 'SonarQube Analysis Completed'
                 }
             }
