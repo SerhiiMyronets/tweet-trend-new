@@ -1,11 +1,11 @@
 pipeline {
-    agent {
-        node {
-            label "slave"
-        }
-    }
+//     agent {
+//         node {
+//             label "slave"
+//         }
+//     }
     environment {
-        PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+        PATH = "/opt/apache-maven-3.9.2/bin:$PATH"
         scannerHome = tool 'sonar-scanner'
     }
     stages {
@@ -34,7 +34,7 @@ pipeline {
         stage("Quality Gate") {
             steps {
                 script {
-                    timeout(time: 5, unit: 'MINUTES') {
+                    timeout(time: 1, unit: 'MINUTES') {
                         def qg = waitForQualityGate()
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
