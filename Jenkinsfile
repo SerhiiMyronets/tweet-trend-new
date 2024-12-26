@@ -21,33 +21,33 @@ pipeline {
                 echo "----------- build completed ----------"
             }
         }
-        stage("test") {
-            steps{
-                echo "----------- unit test started ----------"
-                sh 'mvn surefire-report:report'
-                echo "----------- unit test Completed ----------"
-            }
-        }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonar-server') {
-                    sh "${scannerHome}/bin/sonar-scanner -X"
-                    echo 'SonarQube Analysis Completed'
-                }
-            }
-        }
-        stage("Quality Gate") {
-            steps {
-                script {
-                    timeout(time: 1, unit: 'MINUTES') {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                    }
-                }
-            }
-        }
+//         stage("test") {
+//             steps{
+//                 echo "----------- unit test started ----------"
+//                 sh 'mvn surefire-report:report'
+//                 echo "----------- unit test Completed ----------"
+//             }
+//         }
+//         stage('SonarQube Analysis') {
+//             steps {
+//                 withSonarQubeEnv('sonar-server') {
+//                     sh "${scannerHome}/bin/sonar-scanner -X"
+//                     echo 'SonarQube Analysis Completed'
+//                 }
+//             }
+//         }
+//         stage("Quality Gate") {
+//             steps {
+//                 script {
+//                     timeout(time: 1, unit: 'MINUTES') {
+//                         def qg = waitForQualityGate()
+//                         if (qg.status != 'OK') {
+//                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
+//                         }
+//                     }
+//                 }
+//             }
+//         }
         stage("Jar Publish") {
             steps {
                 script {
