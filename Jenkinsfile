@@ -1,5 +1,5 @@
 def registry = 'https://trialhjwbtk.jfrog.io'
-def imageName = 'trialhjwbtk.jfrog.io/artifactory/docker-repo-docker/demo-workshop'
+def imageName = 'trialhjwbtk.jfrog.io/docker-repo-docker-local/demo-workshop'
 def version   = '2.1.2'
 
 pipeline {
